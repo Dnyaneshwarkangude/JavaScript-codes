@@ -1,0 +1,72 @@
+<!-- BMI Calculator -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        .input{
+            border-radius: 5px;
+            padding: 8px;
+        }
+        #button{
+            border-radius: 5px;
+            padding: 10px 20px ;
+            font-size: 20px;
+            position: relative;
+            left: 110px;
+        }
+        #msg{
+            position: relative;
+            left: 140px;
+            font-size: 20px;
+        }
+        .bold{
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="background-color:#21212168; color : rgb(26, 3, 23)">
+    <h1 id="heading">BMI Calculator</h1>
+    <p class="bold">Height in CM : <span><input type="text" class="input" id="height"></span></p>
+    <p class="bold">Weight in KG : <span><input type="text" class="input" id="weight"></span></p>
+    <div><button id="button">Calculate</button> <span id="msg"></span></div>
+    <h2 class="bold">BMI Weight Guide</h2>
+    <p class="bold">Under Weight = Less than 18.6</p>
+    <p class="bold">Normal Range = 18.6 and 24.9</p>
+    <p class="bold">Overweight = Greater than 24.9</p>
+</body>
+<script>
+    
+    let button = document.getElementById('button')
+    button.addEventListener("click",function(){
+        let height = parseInt(document.getElementById('height').value);
+        height = height/100;
+        const weight = parseInt(document.getElementById('weight').value);
+        const bmi = weight/(height*height);
+
+        let msg = document.getElementById('msg')
+        if(height === '' || height <= 0 || isNaN(height)){
+            msg.innerHTML = "Please enter valid height";
+        }
+        else if(weight ==='' || weight <= 0 || isNaN(weight)){
+            msg.innerHTML = "Please enter valid weight";
+        } 
+        else{
+            button.innerText = bmi.toFixed(2);
+            if(bmi < 18.6){
+                msg.innerHTML = "you are under weight, eat more man"
+            }
+            if(18.6 <= bmi && bmi<=24.9){
+                msg.innerHTML = "Congratulation your weight is normal"
+            }
+            if(bmi > 24.9){
+                msg.innerHTML = "Warnning you are overweight, you should stop eating"
+            }
+        }
+    })
+
+</script>
+</html>

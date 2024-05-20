@@ -1,0 +1,102 @@
+<!-- Guess Number Game -->
+<!-- need to improve more (There are bugs find it and improve letter) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number guessing Game</title>
+    <style>
+        body{
+            background-color: #212121;
+            color: whitesmoke;
+            text-align: center;
+        }
+        #input{
+            text-align: center;
+            font-size: 30px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #submit{
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-size: 20px;
+            margin-top: 30px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Number guessing Game</h1>
+    <p style="font-size: 20px;">Try and guess a random number between 1 and 100.<br>You have 10
+       attempts to guess the right number.</p>
+    <p style="font-size: 50px">Guess a number</p>
+    <input type="number" id="input" min="1" max="100" step="1"><br>
+    
+    <button id="submit">Submit guess</button>
+    <p style="font-size: 20px;">Previous Guesses : <span id="prev_guesses"></span></p>
+    <p style="font-size: 20px;">Guesses Remaining : <span id="remain_guesses">10</span></p>
+    <p id="msg" style="font-size: 30px;"></p>
+</body>
+<script>
+    const number = Math.floor((Math.random()*(100-1+1))+1);
+    console.log(`number = ${number}`);
+
+    const submit = document.getElementById('submit');
+    submit.addEventListener('click',work);
+
+    let input = document.getElementById('input');
+    //input.addEventListener('focus',() => this.innerHTML = '');
+     
+    let message = document.getElementById('msg');
+
+    let guesses_list = [];
+    let count = 10;
+
+    function work(){ 
+        if(count > 0){
+            count--;
+            const value = input.value;
+            resetGuess();
+            if(value == number){
+                message.innerHTML = `Congratulation your guess is Correct`;
+            }
+            else{
+                let rem_guesses = document.getElementById('remain_guesses')
+                rem_guesses.innerHTML = `${count}`
+
+                guesses_list.push(value);
+                let prev_guesses = document.getElementById('prev_guesses')
+                prev_guesses.innerHTML = `${guesses_list}`
+            }
+            if(value < number){
+                message.innerHTML = `guessed number is low`;
+            }
+            if(value > number){
+                message.innerHTML = `guessed number is high`;
+            }
+        }
+        else{
+            message.innerHTML = `Game Over number was ${number}.`;
+            const restart = document.createElement('h2');
+            restart.innerHTML = 'Click here to Restart';
+            document.body.appendChild(restart);
+            restart.addEventListener('click', function(){
+
+            })
+
+        }
+    }
+    
+    function resetGuess(){
+        input.innerText = '';
+    }
+</script>
+</html>

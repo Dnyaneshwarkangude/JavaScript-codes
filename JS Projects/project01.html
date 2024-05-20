@@ -1,0 +1,84 @@
+<!-- Color Scheme Switcher (on clicking color box we can change background color) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Scheme Switcher</title>
+    <style>
+        body{
+            background-color: #212121b5; 
+            color: #fff;
+        }
+        p{
+            font-size: 20px;
+        }
+        .box{
+            width: 80px;
+            height: 80px;
+            border: 1px solid black; 
+            display: inline-block;
+        }
+        #one{
+            background-color: whitesmoke;
+        }
+        #two{
+            background-color: rgb(42, 42, 125);
+        }
+        #three{
+            background-color: rgba(0, 0, 0, 0.622);
+        }
+        #four{
+            background-color: rgba(0, 128, 0, 0.938);
+        }
+        #five{
+            background-color: gray;
+        }
+    </style>
+</head>
+<body id="body"> 
+    <h1>Color Scheme Switcher</h1>
+    <div class="box" id="one"></div>
+    <div class="box" id="two"></div>
+    <div class="box" id="three"></div>
+    <div class="box" id="four"></div>
+    <div class="box" id="five"></div>
+    <p>Try clicking on one of the colors above to change the background color of this page!</p>
+</body>
+<Script>
+    let one = document.getElementById("one").addEventListener("click",firstBox)
+    let two = document.getElementById("two").addEventListener("click",secondBox)
+    let three = document.getElementById("three").addEventListener("click",thirdBox)
+    let four = document.getElementById("four").addEventListener("click",fourthBox)
+    let five = document.getElementById("five").addEventListener("click",fifthBox)
+
+    function firstBox(){
+        const element = document.getElementById("one")
+        onClickChange(element)
+        document.querySelector('body').style.color = "black"
+    }
+    function secondBox(){
+        const element = document.getElementById("two")
+        onClickChange(element)
+    }
+    function thirdBox(){
+        const element = document.getElementById("three")
+        onClickChange(element)
+    }
+    function fourthBox(){
+        const element = document.getElementById("four")
+        onClickChange(element)
+    }
+    function fifthBox(){
+        const element = document.getElementById("five")
+        onClickChange(element)
+    }
+    function onClickChange(element){
+        let body = document.querySelector("#body"); 
+        body.style.backgroundColor = window.getComputedStyle(element).backgroundColor  
+   }  
+ 
+
+</Script>
+</html>
